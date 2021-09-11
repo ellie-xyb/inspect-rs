@@ -1,5 +1,12 @@
 struct Job {
     name: String,
+    age: usize,
+}
+
+impl ToString for Job {
+    fn to_string(&self) -> String {
+        format!("{} / {}", self.name, self.age)
+    }
 }
 
 enum Status<T> {
@@ -17,7 +24,10 @@ fn print_status<T: ToString>(status: Status<T>) {
 }
 
 pub fn test() {
-    let a = Status::Pending("damn bear!");
+    let a = Status::Pending(Job {
+        name: "damn bear!".to_string(),
+        age: 100,
+    });
     print_status(a);
 }
 
